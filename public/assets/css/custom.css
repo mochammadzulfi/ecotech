@@ -1,0 +1,201 @@
+/* =====================
+   GLOBAL FONT
+===================== */
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #2c2c2c;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =====================
+   HEADER / NAVBAR
+===================== */
+.navbar {
+    background-color: #1e3794;
+    padding: 18px 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Toggler putih */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Logo */
+.navbar-brand img {
+    height: 60px;
+}
+
+/* Menu tengah */
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-weight: 400;
+    /* INI KUNCI */
+    font-size: 14.5px;
+    letter-spacing: 0.3px;
+    /* bikin lebih tipis */
+    padding: 0 18px;
+}
+
+/* Hover */
+.navbar-nav .nav-link:hover {
+    opacity: 0.85;
+}
+
+/* Language switcher */
+.lang-switch a {
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.lang-switch a.active {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-link.active {
+        font-weight: 500;
+        position: relative;
+    }
+
+    .navbar-nav .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 22px;
+        height: 2px;
+        background-color: #ffffff;
+        border-radius: 2px;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .navbar-collapse {
+        background-color: #1e3794;
+        padding: 16px 0;
+    }
+
+    .navbar-nav .nav-item {
+        text-align: center;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 12px 0;
+        font-size: 15px;
+    }
+
+    .navbar-nav .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+    /* MATIKAN UNDERLINE DESKTOP */
+    .navbar-nav .nav-link.active::after {
+        display: none;
+    }
+}
+
+/* =====================
+   HERO SECTION
+===================== */
+.hero-section {
+    position: relative;
+    min-height: 90vh;
+    background: url('/assets/images/hero.jpg') center center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+/* Overlay biru */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(30, 55, 148, 0.78);
+    z-index: 1;
+}
+
+/* Content */
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 16px;
+    max-width: 720px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+/* Buttons */
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.hero-actions .btn {
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+/* Primary button */
+.hero-actions .btn-primary {
+    background-color: #1f5eff;
+    border-color: #1f5eff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 34px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+}
+
+.stat-card, .expertise-card {
+    background: #f9f9f9;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.client-logo {
+    max-width: 140px;
+    opacity: .8;
+    transition: .3s;
+}
+.client-logo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
