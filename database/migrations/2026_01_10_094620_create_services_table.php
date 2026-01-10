@@ -11,18 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_headers', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
 
-            $table->string('page'); // services, product, portfolio, contact
+            $table->string('slug');
 
             $table->string('title_id');
             $table->string('title_en');
 
-            $table->text('subtitle_id')->nullable();
-            $table->text('subtitle_en')->nullable();
+            $table->text('short_desc_id');
+            $table->text('short_desc_en');
 
-            $table->string('background_image')->nullable();
+            $table->longText('content_id');
+            $table->longText('content_en');
+
+            $table->string('image');
+            $table->string('icon')->nullable();
 
             $table->timestamps();
         });
@@ -33,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_headers');
+        Schema::dropIfExists('services');
     }
 };

@@ -33,23 +33,7 @@
     </div>
 </section>
 
-<section class="stats-section">
-    <div class="container">
-        <div class="row g-4 mt-4">
-            @foreach ($stats as $stat)
-            <div class="col-md-4" data-aos="fade-up">
-                <div class="stat-card">
-                    <div class="stat-content">
-                        <img src="{{ asset('storage/' . $stat->icon) }}" class="stat-icon">
-                        <h3>{{ $stat->value }}</h3>
-                        <p>{{ $stat->{'label_' . app()->getLocale()} }}</p>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
+@include('components.stats', ['stats' => $stats])
 
 <section class="client-section mt-4">
     <h4 class="section-title text-center">{{ __('general.home_client') }}</h4>
@@ -143,8 +127,6 @@
     </div>
 </section>
 
-
-
 <section class="project-section section-space mt-4">
     <h3 class="section-title text-center">{{ __('general.home_recent_project') }}</h3>
     <p class="section-subtitle text-center">
@@ -188,21 +170,7 @@
     </div>
 </section>
 
-<section class="certificate-section section-space">
-    <h3 class="section-title text-center">{{ __('general.certificate') }}</h3>
-
-    <div class="container mt-4">
-        <div class="row justify-content-center align-items-center g-4">
-            @foreach ($certificates as $cert)
-            <div class="col-6 col-md-2 text-center">
-                <img src="{{ asset('storage/'.$cert->logo) }}"
-                    alt="{{ $cert->name }}"
-                    class="certificate-logo">
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
+@include('components.certificate', ['certificates' => $certificates])
 
 <section class="cta-section">
     <div class="container text-center">
@@ -226,6 +194,5 @@
         </div>
     </div>
 </section>
-
 
 @endsection

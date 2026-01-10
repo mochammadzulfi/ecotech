@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        
+
         //$this->call(HomeContentSeeder::class);
         //$this->call(StatSeeder::class);
         //$this->call(ClientSeeder::class);
@@ -31,10 +31,16 @@ class DatabaseSeeder extends Seeder
         //$this->call(ProjectSeeder::class);
 
         //$this->call(CertificateSeeder::class);
-        
+
         //$this->call(CtaSectionSeeder::class);
 
-        $this->call(FooterContentSeeder::class);
+        //$this->call(FooterContentSeeder::class);
+
+        //$this->call(PageHeaderSeeder::class);
+
+        //$this->call(ServicesSeeder::class);
+
+        //$this->call(PageHeaderSecSeeder::class);
 
         // User::factory()->create([
         //     'name' => 'Test User',

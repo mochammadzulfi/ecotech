@@ -10,6 +10,8 @@ use App\Models\Stat;
 use App\Models\Project;
 use App\Models\Certificate;
 use App\Models\CtaSection;
+use App\Models\PageHeader;
+use App\Models\Service;
 
 class PageController extends Controller
 {
@@ -21,7 +23,7 @@ class PageController extends Controller
         $expertises = Expertise::all();
         $precision = PrecisionSection::with('items')->first();
         //$projects = Project::latest()->take(4)->get();
-        $projects = Project::all();
+        $projects = Project::latest()->get();
         $certificates = Certificate::all();
         $cta = CtaSection::first();
 
@@ -30,7 +32,22 @@ class PageController extends Controller
 
     public function services()
     {
-        return view('pages.services');
+        $header = PageHeader::where('page', 'services')->firstOrFail();
+        $services = Service::all();
+        $certificates = Certificate::all();
+        $cta = CtaSection::first();
+        $stats = Stat::all();
+
+        return view('pages.services', compact('header', 'services', 'certificates', 'cta', 'stats'));
+    }
+
+    public function serviceDetail($lang, $slug)
+    {
+        $header = PageHeader::where('page', 'services')->firstOrFail();
+
+        $service = Service::where('slug', $slug)->firstOrFail();
+
+        return view('pages.service-detail', compact('header', 'service'));
     }
 
     public function products()
