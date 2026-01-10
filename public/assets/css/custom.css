@@ -183,19 +183,321 @@ body {
     }
 }
 
-.stat-card, .expertise-card {
-    background: #f9f9f9;
-    border-radius: 16px;
-    padding: 32px 24px;
-    text-align: center;
+.section-title {
+    color: #1e3794;
+    font-weight: 500;
+}
+
+/* =====================
+   STAT CARD (LEFT ALIGN)
+===================== */
+.stat-card {
+    background: #e7e8eb;
+    border-radius: 18px;
+    padding: 32px 28px;
+}
+
+.stat-content {
+    text-align: left;
+    /* INI KUNCINYA */
+}
+
+.stat-icon {
+    width: 40px;
+    margin-bottom: 14px;
+}
+
+.stat-content h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #111;
+}
+
+.stat-content p {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+/* =====================
+   EXPERTISE CARD (LEFT ALIGN)
+===================== */
+.expertise-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 36px 30px;
+}
+
+.expertise-content {
+    text-align: left;
+    /* INI KUNCI */
+}
+
+.expertise-icon {
+    width: 48px;
+    margin-bottom: 18px;
+}
+
+.expertise-content h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.expertise-content p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+    .expertise-content {
+        text-align: center;
+    }
+}
+
+.learn-more {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e3794;
+    text-decoration: none;
 }
 
 .client-logo {
-    max-width: 140px;
-    opacity: .8;
+    max-height: 75px;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.client-logo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.client-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.client-track {
+    display: flex;
+    width: 200%;
+    animation: clientScroll 35s linear infinite;
+}
+
+.client-item {
+    flex: 0 0 auto;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.client-item img {
+    max-height: 60px;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.client-item img:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Pause on hover */
+.client-slider:hover .client-track {
+    animation-play-state: paused;
+}
+
+/* Animation */
+@keyframes clientScroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .client-item {
+        width: 160px;
+    }
+
+    .client-item img,
+    .client-logo {
+        max-height: 48px;
+    }
+}
+
+/* =====================
+   PRECISION SECTION
+===================== */
+.precision-section {
+    padding: 100px 0;
+    background: #f9fafc;
+}
+
+.precision-image {
+    border-radius: 18px;
+}
+
+.precision-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.precision-desc {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.precision-list {
+    list-style: none;
+    padding: 0;
+}
+
+.precision-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #1e3794;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =====================
+   PROJECT SECTION
+===================== */
+.project-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.project-card img {
+    width: 100%;
+    height: 390px;
+    object-fit: cover;
+}
+
+/* Overlay gradient */
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(30, 55, 148, 0.9),
+            rgba(30, 55, 148, 0.2));
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.project-overlay h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.project-overlay p {
+    font-size: 14px;
+    margin-bottom: 6px;
+    opacity: .95;
+}
+
+.project-overlay span {
+    font-size: 12px;
+    opacity: .85;
+}
+
+@media (max-width: 768px) {
+    .project-card img {
+        height: 260px;
+    }
+}
+
+/* =====================
+   PROJECT AUTO SCROLL
+===================== */
+
+.project-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.project-track {
+    display: flex;
+    width: 200%;
+    animation: projectScroll 40s linear infinite;
+}
+
+.project-track .project-card {
+    flex: 0 0 auto;
+    width: 280px;
+    margin-right: 24px;
+}
+
+/* Pause on hover */
+.project-slider:hover .project-track {
+    animation-play-state: paused;
+}
+
+/* Animation */
+@keyframes projectScroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .project-track .project-card {
+        width: 240px;
+    }
+
+    .project-card img {
+        height: 260px;
+    }
+}
+
+/* =====================
+   CERTIFICATE
+===================== */
+.certificate-section {
+    padding: 100px 0;
+}
+
+.certificate-logo {
+    max-height: 100px;
+    opacity: .85;
     transition: .3s;
 }
-.client-logo:hover {
+
+.certificate-logo:hover {
     opacity: 1;
     transform: scale(1.05);
 }

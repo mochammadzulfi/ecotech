@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class PrecisionSection extends Model
+{
+    protected $fillable = [
+        'title_id', 'title_en', 'desc_id', 'desc_en', 'image',
+    ];
+
+    public function items()
+    {
+        return $this->hasMany(PrecisionItem::class);
+    }
+}
