@@ -9,7 +9,7 @@ $switchUrl = '/' . implode('/', $segments);
 $page = request()->segment(2);
 @endphp
 
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg main-navbar">
     <div class="container">
 
         {{-- LOGO --}}

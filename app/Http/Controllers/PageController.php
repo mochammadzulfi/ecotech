@@ -9,6 +9,7 @@ use App\Models\PrecisionSection;
 use App\Models\Stat;
 use App\Models\Project;
 use App\Models\Certificate;
+use App\Models\CtaSection;
 
 class PageController extends Controller
 {
@@ -22,8 +23,9 @@ class PageController extends Controller
         //$projects = Project::latest()->take(4)->get();
         $projects = Project::all();
         $certificates = Certificate::all();
+        $cta = CtaSection::first();
 
-        return view('pages.home', compact('content', 'stats', 'clients', 'expertises', 'precision', 'projects', 'certificates'));
+        return view('pages.home', compact('content', 'stats', 'clients', 'expertises', 'precision', 'projects', 'certificates', 'cta'));
     }
 
     public function services()

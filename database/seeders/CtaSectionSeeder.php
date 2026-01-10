@@ -19,9 +19,9 @@ class CtaSectionSeeder extends Seeder
                 'title_en' => 'Ready to Optimize Your System?',
 
                 'desc_id' =>
-                    'Hubungi tim kami untuk konsultasi gratis. Kami tersedia 24/7 untuk dukungan darurat.',
+                'Hubungi tim kami untuk konsultasi gratis. Kami tersedia 24/7 untuk dukungan darurat.',
                 'desc_en' =>
-                    'Contact our team for a free consultation. We are available 24/7 for emergency support.',
+                'Contact our team for a free consultation. We are available 24/7 for emergency support.',
 
                 'btn_primary_id' => 'Hubungi Sekarang',
                 'btn_primary_en' => 'Call us now',
@@ -30,6 +30,5 @@ class CtaSectionSeeder extends Seeder
                 'btn_secondary_en' => 'Our Services',
             ]
         ]);
-
     }
 }

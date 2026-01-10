@@ -18,6 +18,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css">
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 
     @stack('styles')
 </head>
@@ -36,6 +38,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     @stack('scripts')
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.main-navbar');
+
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+    </script>
+
 </body>
 
 </html>

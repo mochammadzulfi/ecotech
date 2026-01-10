@@ -48,6 +48,30 @@ body {
     opacity: 0.85;
 }
 
+/* =====================
+   NAVBAR SCROLL EFFECT
+===================== */
+.main-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #1e3794;
+    transition: all 0.3s ease;
+}
+
+/* Saat discroll */
+.main-navbar.scrolled {
+    background: #1e3794;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Optional: sedikit mengecil */
+.main-navbar.scrolled .navbar-brand img {
+    height: 42px;
+    transition: 0.3s;
+}
+
+
 /* Language switcher */
 .lang-switch a {
     color: #ffffff;
@@ -164,8 +188,8 @@ body {
 
 /* Primary button */
 .hero-actions .btn-primary {
-    background-color: #1f5eff;
-    border-color: #1f5eff;
+    background-color: #135bed;
+    border-color: #135bed;
 }
 
 /* Responsive */
@@ -192,7 +216,7 @@ body {
    STAT CARD (LEFT ALIGN)
 ===================== */
 .stat-card {
-    background: #e7e8eb;
+    background: #f6f6f8;
     border-radius: 18px;
     padding: 32px 28px;
 }
@@ -226,7 +250,7 @@ body {
 .expertise-card {
     background: #ffffff;
     border-radius: 18px;
-    padding: 36px 30px;
+    padding: 20px 30px;
 }
 
 .expertise-content {
@@ -269,6 +293,8 @@ body {
     max-height: 75px;
     opacity: 0.85;
     transition: all 0.3s ease;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .client-logo:hover {
@@ -334,12 +360,38 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+
+    /* batasi area scroll */
+    .client-slider {
+        padding: 10px 0;
+    }
+
+    /* track jangan terlalu panjang */
+    .client-track {
+        width: max-content;
+        animation-duration: 25s;
+        /* lebih pelan */
+    }
+
+    /* item lebih kecil */
+    .client-item {
+        width: 140px;
+        padding: 0 10px;
+    }
+
+    .client-item img {
+        max-height: 40px;
+    }
+}
+
+
 /* =====================
    PRECISION SECTION
 ===================== */
 .precision-section {
     padding: 100px 0;
-    background: #f9fafc;
+    background: #f6f6f8;
 }
 
 .precision-image {
@@ -488,7 +540,7 @@ body {
    CERTIFICATE
 ===================== */
 .certificate-section {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 .certificate-logo {
@@ -500,4 +552,125 @@ body {
 .certificate-logo:hover {
     opacity: 1;
     transform: scale(1.05);
+}
+
+/* =====================
+   CTA SECTION
+===================== */
+.cta-section {
+    background: #f6f6f8;
+    padding: 50px 0;
+}
+
+.cta-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1e3794;
+    margin-bottom: 12px;
+}
+
+.cta-desc {
+    font-size: 14px;
+    color: #1e3794;
+    margin-bottom: 32px;
+}
+
+.cta-actions .btn {
+    padding: 12px 28px;
+    border-radius: 10px;
+    margin: 0 8px;
+}
+
+.btn-primary {
+    background-color: #1e3794;
+    border-color: #1e3794;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: #1e3794;
+    --bs-btn-border-color: #1e3794;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #1e3794;
+    --bs-btn-hover-border-color: #1e3794;
+    --bs-btn-focus-shadow-rgb: 13, 110, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #1e3794;
+    --bs-btn-active-border-color: #1e3794;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #1e3794;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #1e3794;
+    --bs-gradient: none;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.site-footer {
+    background: #ffffff;
+    padding: 80px 0 0;
+    font-size: 14px;
+}
+
+.site-footer h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.site-footer p,
+.site-footer li {
+    color: #2c2c2c;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.site-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.site-footer ul li {
+    margin-bottom: 8px;
+}
+
+.site-footer a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+.site-footer a:hover {
+    color: #1e3794;
+}
+
+/* bottom */
+.footer-bottom {
+    background: #1e3794;
+    color: #fff;
+    text-align: center;
+    padding: 16px 0;
+    margin-top: 60px;
+}
+
+.project-card,
+.expertise-card,
+.stat-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover,
+.expertise-card:hover,
+.stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.btn-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(30, 55, 148, 0.3);
 }

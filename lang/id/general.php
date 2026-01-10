@@ -16,4 +16,5 @@ return [
     'home_recent_project' => 'Proyek Terbaru',
     'home_recent_project_delivering' => 'Menyampaikan Keunggulan di Berbagai Industri',
     'certificate' => 'Sertifikat',
+    'copyright' => 'Hak Cipta Dilindungi Semua Hak',
 ];

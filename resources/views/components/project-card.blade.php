@@ -1,4 +1,4 @@
-<div class="project-card">
+<div class="project-card" data-aos="fade-up">
     <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->{'title_' . app()->getLocale()} }}">
 
     <div class="project-overlay">

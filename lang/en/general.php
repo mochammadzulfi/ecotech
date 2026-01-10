@@ -16,4 +16,5 @@ return [
     'home_recent_project' => 'Recent Project',
     'home_recent_project_delivering' => 'Delivering Excellence Across Industries',
     'certificate' => 'Certificate',
+    'copyright' => 'All rights reserved',
 ];

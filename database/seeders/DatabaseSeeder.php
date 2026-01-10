@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\FooterContent;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,7 +32,9 @@ class DatabaseSeeder extends Seeder
 
         //$this->call(CertificateSeeder::class);
         
-        $this->call(CtaSectionSeeder::class);
+        //$this->call(CtaSectionSeeder::class);
+
+        $this->call(FooterContentSeeder::class);
 
         // User::factory()->create([
         //     'name' => 'Test User',
