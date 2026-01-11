@@ -22,4 +22,5 @@ return [
     'all' => 'All',
     'search_model' => 'Search by name...',
     'view_detail' => 'View Detail',
+    'related_products' => 'Related Products',
 ];

@@ -109,7 +109,12 @@ class PageController extends Controller
         // Related products (simple & safe)
         $relatedProducts = Product::where('id', '!=', $product->id)
             ->latest()
-            ->paginate(3, ['*'], 'related_page');
+            ->paginate(3, ['*'], 'related_page')
+            ->withQueryString();
+
+        if (request()->ajax()) {
+            return view('pages.partials.related-products', compact('relatedProducts'))->render();
+        }
 
         $header = PageHeader::where('page', 'products')->first();
         $cta = CtaSection::first();

@@ -22,4 +22,5 @@ return [
     'all' => 'Semua',
     'search_model' => 'Cari berdasarkan nama...',
     'view_detail' => 'Lihat Detail',
+    'related_products' => 'Produk Terkait',
 ];

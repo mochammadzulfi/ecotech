@@ -1070,3 +1070,15 @@ body {
     padding: 6px 10px;
     font-size: 13px;
 }
+
+.ajax-fade-out {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.ajax-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .35s ease, transform .35s ease;
+}

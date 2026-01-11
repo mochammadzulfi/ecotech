@@ -50,24 +50,20 @@
 {{-- RELATED PRODUCTS --}}
 <section class="product-section">
     <div class="container">
+
         <h4 class="section-title text-center mb-4">
             {{ __('general.related_products') }}
         </h4>
 
-        <div class="row g-4">
-            @foreach ($relatedProducts as $product)
-            <div class="col-md-4 col-sm-6">
-                @include('pages.partials.product-card', ['product' => $product])
-            </div>
-            @endforeach
+        <div id="related-wrapper">
+            @include('pages.partials.related-products', [
+            'relatedProducts' => $relatedProducts
+            ])
         </div>
 
-        {{-- PAGINATION --}}
-        <div class="mt-4 d-flex justify-content-center">
-            {{ $relatedProducts->links() }}
-        </div>
     </div>
 </section>
+
 
 
 @include('components.cta', ['cta' => $cta])

@@ -42,52 +42,33 @@
     @stack('scripts')
 
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
     <script>
         document.addEventListener('scroll', function() {
             const navbar = document.querySelector('.main-navbar');
+            if (!navbar) return;
 
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
-    </script>
-    <script>
+
         AOS.init({
             duration: 800,
             once: true,
             easing: 'ease-out-cubic'
         });
     </script>
-    <script>
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.pagination a')) {
-                e.preventDefault();
 
-                const url = e.target.closest('a').getAttribute('href');
-
-                fetch(url, {
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    })
-                    .then(res => res.text())
-                    .then(html => {
-                        document.getElementById('product-wrapper').innerHTML = html;
-                        AOS.refresh(); // re-init animation
-                        window.history.pushState({}, '', url);
-                    });
-            }
-        });
-    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
             const wrapper = document.getElementById('product-wrapper');
             const searchInput = document.getElementById('product-search');
 
+            if (!wrapper) return; // ⛔ hanya halaman product list
+
             function loadProducts(url) {
+                wrapper.classList.add('ajax-fade-out');
+
                 fetch(url, {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
@@ -95,15 +76,22 @@
                     })
                     .then(res => res.text())
                     .then(html => {
-                        wrapper.innerHTML = html;
-                        AOS.refresh();
-                        window.history.pushState({}, '', url);
+                        setTimeout(() => {
+                            wrapper.innerHTML = html;
+                            wrapper.classList.remove('ajax-fade-out');
+                            wrapper.classList.add('ajax-fade-in');
+
+                            AOS.refresh();
+                            window.history.pushState({}, '', url);
+
+                            setTimeout(() => {
+                                wrapper.classList.remove('ajax-fade-in');
+                            }, 400);
+                        }, 200);
                     });
             }
 
-            /* =====================
-               CATEGORY CLICK
-            ===================== */
+            // CATEGORY
             document.addEventListener('click', function(e) {
                 const btn = e.target.closest('.btn-filter');
                 if (!btn) return;
@@ -112,36 +100,27 @@
 
                 const category = btn.dataset.category || '';
                 const search = searchInput.value;
+                loadProducts(`?category=${category}&search=${search}`);
 
-                let url = `?category=${category}&search=${search}`;
-                loadProducts(url);
-
-                // active state
-                document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.btn-filter')
+                    .forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             });
 
-            /* =====================
-               SEARCH INPUT
-            ===================== */
-            let searchTimer;
+            // SEARCH
+            let timer;
             searchInput.addEventListener('keyup', function() {
-                clearTimeout(searchTimer);
-
-                searchTimer = setTimeout(() => {
-                    const categoryBtn = document.querySelector('.btn-filter.active');
-                    const category = categoryBtn ? categoryBtn.dataset.category : '';
-
-                    let url = `?category=${category}&search=${searchInput.value}`;
-                    loadProducts(url);
-                }, 400); // debounce
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    const active = document.querySelector('.btn-filter.active');
+                    const category = active ? active.dataset.category : '';
+                    loadProducts(`?category=${category}&search=${searchInput.value}`);
+                }, 400);
             });
 
-            /* =====================
-               PAGINATION CLICK
-            ===================== */
+            // PAGINATION
             document.addEventListener('click', function(e) {
-                const pageLink = e.target.closest('.pagination a');
+                const pageLink = e.target.closest('#product-wrapper .pagination a');
                 if (!pageLink) return;
 
                 e.preventDefault();
@@ -151,7 +130,46 @@
         });
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
+            const relatedWrapper = document.getElementById('related-wrapper');
+            if (!relatedWrapper) return; // ⛔ hanya detail page
+
+            document.addEventListener('click', function(e) {
+                const pageLink = e.target.closest('#related-wrapper .pagination a');
+                if (!pageLink) return;
+
+                e.preventDefault();
+                const url = pageLink.getAttribute('href');
+
+                relatedWrapper.classList.add('ajax-fade-out');
+
+                fetch(url, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(res => res.text())
+                    .then(html => {
+                        setTimeout(() => {
+                            relatedWrapper.innerHTML = html;
+
+                            relatedWrapper.classList.remove('ajax-fade-out');
+                            relatedWrapper.classList.add('ajax-fade-in');
+
+                            AOS.refresh();
+                            window.history.replaceState({}, '', url);
+
+                            setTimeout(() => {
+                                relatedWrapper.classList.remove('ajax-fade-in');
+                            }, 400);
+                        }, 200);
+                    });
+            });
+
+        });
+    </script>
 </body>
 
 </html>
