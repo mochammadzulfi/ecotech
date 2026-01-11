@@ -102,6 +102,26 @@ class PageController extends Controller
         ));
     }
 
+    public function productDetail($lang, $slug)
+    {
+        $product = Product::where('slug', $slug)->firstOrFail();
+
+        // Related products (simple & safe)
+        $relatedProducts = Product::where('id', '!=', $product->id)
+            ->latest()
+            ->paginate(3, ['*'], 'related_page');
+
+        $header = PageHeader::where('page', 'products')->first();
+        $cta = CtaSection::first();
+
+        return view('pages.product-detail', compact(
+            'product',
+            'relatedProducts',
+            'header',
+            'cta'
+        ));
+    }
+
     public function portfolio()
     {
         return view('pages.portfolio');
