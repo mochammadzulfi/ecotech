@@ -170,6 +170,86 @@
 
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const wrapper = document.getElementById('project-wrapper');
+            if (!wrapper) return; // ⛔ hanya halaman project
+
+            function loadProjects(url) {
+                wrapper.classList.add('ajax-fade-out');
+
+                fetch(url, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(res => res.text())
+                    .then(html => {
+                        setTimeout(() => {
+                            wrapper.innerHTML = html;
+
+                            wrapper.classList.remove('ajax-fade-out');
+                            wrapper.classList.add('ajax-fade-in');
+
+                            AOS.refresh();
+                            window.history.pushState({}, '', url);
+
+                            setTimeout(() => {
+                                wrapper.classList.remove('ajax-fade-in');
+                            }, 400);
+                        }, 200);
+                    });
+            }
+
+            /* FILTER */
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('.btn-filter');
+                if (!btn) return;
+
+                e.preventDefault();
+
+                document.querySelectorAll('.btn-filter')
+                    .forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                loadProjects(`?category=${btn.dataset.category}`);
+            });
+
+            /* PAGINATION */
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('#project-wrapper .pagination a');
+                if (!link) return;
+
+                e.preventDefault();
+                loadProjects(link.getAttribute('href'));
+            });
+
+        });
+    </script>
+
+    <script>
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('#project-wrapper .pagination a');
+            if (!link) return;
+
+            e.preventDefault();
+
+            fetch(link.href, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('project-wrapper').innerHTML = html;
+                    AOS.refresh();
+                    window.history.pushState({}, '', link.href);
+                });
+        });
+    </script>
+
 </body>
 
 </html>

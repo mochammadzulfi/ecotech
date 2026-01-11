@@ -15,6 +15,7 @@ use App\Models\PageHeader;
 use App\Models\Service;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProjectCategory;
 
 class PageController extends Controller
 {
@@ -127,9 +128,70 @@ class PageController extends Controller
         ));
     }
 
-    public function portfolio()
+    public function portfolio(Request $request)
     {
-        return view('pages.portfolio');
+        $header = PageHeader::where('page', 'portfolio')->first();
+        $categories = ProjectCategory::all();
+
+        $projects = Project::with('category')
+            ->when($request->category, function ($q) use ($request) {
+                $q->whereHas(
+                    'category',
+                    fn($c) =>
+                    $c->where('slug', $request->category)
+                );
+            })
+            ->latest()
+            ->paginate(6)
+            ->withQueryString();
+
+        // $project = Project::with('category')->first();
+        // dd($project);
+        // die();
+
+        // AJAX response
+        if ($request->ajax()) {
+            return view('pages.partials.project-grid', compact('projects'))->render();
+        }
+
+        $certificates = Certificate::all();
+        $cta = CtaSection::first();
+
+        return view('pages.portfolio', compact(
+            'header',
+            'projects',
+            'categories',
+            'certificates',
+            'cta'
+        ));
+    }
+
+    public function portfolioDetail($lang, $slug)
+    {
+        $header = PageHeader::where('page', 'portfolio')->first();
+
+        $project = Project::with('category')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        $relatedProjects = Project::with('category')
+            ->where('id', '!=', $project->id)
+            ->latest()
+            ->paginate(3);
+
+        $cta = CtaSection::first();
+
+        // AJAX related pagination
+        if (request()->ajax()) {
+            return view('pages.partials.project-related-grid', compact('relatedProjects'))->render();
+        }
+
+        return view('pages.portfolio-detail', compact(
+            'header',
+            'project',
+            'relatedProjects',
+            'cta'
+        ));
     }
 
     public function contact()

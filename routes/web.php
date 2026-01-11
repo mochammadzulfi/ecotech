@@ -19,5 +19,7 @@ Route::prefix('{lang}')
         Route::get('/products/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
 
         Route::get('/portfolio', [PageController::class, 'portfolio'])->name('portfolio');
+        Route::get('/portfolio/{slug}', [PageController::class, 'portfolioDetail'])->name('portfolio.detail');
+
         Route::get('/contact', [PageController::class, 'contact'])->name('contact');
     });
