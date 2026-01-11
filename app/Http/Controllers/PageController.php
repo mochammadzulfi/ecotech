@@ -16,6 +16,7 @@ use App\Models\Service;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProjectCategory;
+use App\Models\Contact;
 
 class PageController extends Controller
 {
@@ -196,6 +197,16 @@ class PageController extends Controller
 
     public function contact()
     {
-        return view('pages.contact');
+        $header = PageHeader::where('page', 'contact')->first();
+        $certificates = Certificate::all();
+        $cta = CtaSection::first();
+        $contact = Contact::first();
+
+        return view('pages.contact', compact(
+            'header',
+            'certificates',
+            'cta',
+            'contact'
+        ));
     }
 }

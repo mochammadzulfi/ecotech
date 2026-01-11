@@ -23,4 +23,12 @@ return [
     'search_model' => 'Search by name...',
     'view_detail' => 'View Detail',
     'related_products' => 'Related Products',
+    'name' => 'Name',
+    'company' => 'Company',
+    'subject' => 'Subject',
+    'message' => 'Message',
+    'send_message' => 'Send Message',
+    'contact_us' => 'Contact Us',
+    'footer_services' => 'Services',
+    'footer_products' => 'Products',
 ];

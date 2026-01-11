@@ -43,7 +43,9 @@ class DatabaseSeeder extends Seeder
         //$this->call(PageHeaderSecSeeder::class);
 
         //$this->call(CategorySeeder::class);
-        $this->call(ProductSeeder::class);
+        //$this->call(ProductSeeder::class);
+
+        $this->call(ContactSeeder::class);
 
         // User::factory()->create([
         //     'name' => 'Test User',

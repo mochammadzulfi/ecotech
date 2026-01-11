@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\FooterContent;
 use Illuminate\Pagination\Paginator;
+use App\Models\FooterContent;
+use App\Models\Service;
+use App\Models\Product;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,8 +24,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
-        view()->composer('*', function ($view) {
-            $view->with('footer', FooterContent::first());
+        view()->composer('partials.footer', function ($view) {
+
+            $services = Service::where('is_featured', 1)
+                ->orderBy('id')
+                ->take(4)
+                ->get();
+
+            $products = Product::where('is_featured', 1)
+                ->orderBy('id')
+                ->take(4)
+                ->get();
+
+            $footer = FooterContent::first();
+
+            $view->with(compact('services', 'products', 'footer'));
         });
     }
 }

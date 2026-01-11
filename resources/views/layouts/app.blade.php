@@ -28,6 +28,8 @@
 
 <body>
 
+    <div id="top-progress"></div>
+
     @include('partials.navbar')
 
     <main>
@@ -64,11 +66,31 @@
             const wrapper = document.getElementById('product-wrapper');
             const searchInput = document.getElementById('product-search');
 
-            if (!wrapper) return; // ⛔ hanya halaman product list
+            if (!wrapper) return;
 
             function loadProducts(url) {
+                if (!wrapper) return;
+
+                // 1. start premium progress
+                startProgress();
+
+                // 2. fade out existing content
                 wrapper.classList.add('ajax-fade-out');
 
+                // 3. skeleton (ringan, tidak over)
+                setTimeout(() => {
+                    wrapper.innerHTML = `
+            <div class="row g-4">
+                ${Array(6).fill(`
+                    <div class="col-md-4 col-sm-6">
+                        <div class="skeleton-card"></div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+                }, 200);
+
+                // 4. fetch ajax
                 fetch(url, {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
@@ -76,20 +98,29 @@
                     })
                     .then(res => res.text())
                     .then(html => {
+
                         setTimeout(() => {
                             wrapper.innerHTML = html;
+
+                            // 5. fade in new content
                             wrapper.classList.remove('ajax-fade-out');
                             wrapper.classList.add('ajax-fade-in');
 
                             AOS.refresh();
                             window.history.pushState({}, '', url);
 
+                            // 6. finish progress
+                            finishProgress();
+
+                            // cleanup
                             setTimeout(() => {
                                 wrapper.classList.remove('ajax-fade-in');
                             }, 400);
-                        }, 200);
+
+                        }, 250);
                     });
             }
+
 
             // CATEGORY
             document.addEventListener('click', function(e) {
@@ -249,6 +280,56 @@
                 });
         });
     </script>
+
+    <script>
+        let progressInterval;
+
+        function startProgress() {
+            const bar = document.getElementById('top-progress');
+            let width = 10;
+
+            bar.style.width = width + '%';
+
+            progressInterval = setInterval(() => {
+                if (width < 90) {
+                    width += Math.random() * 8;
+                    bar.style.width = width + '%';
+                }
+            }, 180);
+        }
+
+        function finishProgress() {
+            const bar = document.getElementById('top-progress');
+            clearInterval(progressInterval);
+
+            bar.style.width = '100%';
+
+            setTimeout(() => {
+                bar.style.width = '0%';
+            }, 400);
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a').forEach(link => {
+                if (
+                    link.href &&
+                    !link.href.includes('#') &&
+                    !link.hasAttribute('target')
+                ) {
+                    link.addEventListener('click', () => {
+                        startProgress();
+                    });
+                }
+            });
+
+            window.addEventListener('pageshow', () => {
+                finishProgress();
+            });
+        });
+    </script>
+
 
 </body>
 

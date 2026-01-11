@@ -23,4 +23,12 @@ return [
     'search_model' => 'Cari berdasarkan nama...',
     'view_detail' => 'Lihat Detail',
     'related_products' => 'Produk Terkait',
+    'name' => 'Nama',
+    'company' => 'Perusahaan',
+    'subject' => 'Subjek',
+    'message' => 'Pesan',
+    'send_message' => 'Kirim Pesan',
+    'contact_us' => 'Hubungi Kami',
+    'footer_services' => 'Layanan',
+    'footer_products' => 'Produk',
 ];

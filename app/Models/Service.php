@@ -16,6 +16,7 @@ class Service extends Model
         'content_id',
         'content_en',
         'image',
-        'icon'
+        'icon',
+        'is_featured'
     ];
 }
