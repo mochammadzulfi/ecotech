@@ -17,4 +17,9 @@ return [
     'home_recent_project_delivering' => 'Delivering Excellence Across Industries',
     'certificate' => 'Certificate',
     'copyright' => 'All rights reserved',
+    'learn_more' => 'Learn More',
+    'detail_services' => 'Service Detail',
+    'all' => 'All',
+    'search_model' => 'Search by name...',
+    'view_detail' => 'View Detail',
 ];

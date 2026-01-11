@@ -742,35 +742,270 @@ body {
     color: #1e3794;
 }
 
-
 .service-card {
     background: #fff;
     border-radius: 16px;
     overflow: hidden;
-    transition: .3s;
-}
 
-.service-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 100%;
+    /* 🔑 penting */
+    display: flex;
+    /* 🔑 */
+    flex-direction: column;
+    /* 🔑 */
+
+    transition: 0.3s;
 }
 
 .service-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.service-card img {
+    width: 100%;
+    height: 250px;
+    /* FIX tinggi image */
+    object-fit: cover;
 }
 
 .service-content {
     padding: 20px;
+
+    display: flex;
+    /* 🔑 */
+    flex-direction: column;
+    /* 🔑 */
+    flex: 1;
+    /* 🔑 isi sisa tinggi */
 }
 
 .service-content h4 {
     font-size: 18px;
     font-weight: 600;
+    margin-bottom: 8px;
 }
 
 .service-content p {
     font-size: 14px;
     color: #777;
+    flex-grow: 1;
+    /* 🔑 dorong tombol ke bawah */
 }
+
+.service-content a {
+    margin-top: 16px;
+    font-weight: 500;
+}
+
+/* =====================
+   SERVICE DETAIL
+===================== */
+.service-intro {
+    padding: 60px 0;
+}
+
+.service-related {
+    padding: 40px 0;
+}
+
+.service-intro h2 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.service-main-image {
+    border-radius: 16px;
+}
+
+.service-description {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .service-intro h2 {
+        font-size: 24px;
+    }
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    height: 100%;
+    transition: .3s;
+}
+
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+}
+
+.product-content {
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: 600;
+    /* bukan bold berat */
+    margin-bottom: 6px;
+    color: #111;
+}
+
+.product-content p {
+    font-size: 14px;
+    color: #777;
+}
+
+.product-spec {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.spec-badge {
+    background: #f3f4f6;
+    color: #4a5664;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.section-space {
+    padding: 60px 0;
+}
+
+.product-section {
+    background: #f9fafc;
+}
+
+.pagination {
+    gap: 6px;
+}
+
+.page-link {
+    border-radius: 8px;
+    color: #1e3794;
+}
+
+.page-item.active .page-link {
+    background-color: #1e3794;
+    border-color: #1e3794;
+}
+
+.page-link:hover {
+    background-color: #eef2ff;
+}
+
+.product-card {
+    transition: transform .3s ease, box-shadow .3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-skeleton {
+    height: 260px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #eee, #f5f5f5, #eee);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        background-position: 0%
+    }
+
+    100% {
+        background-position: 200%
+    }
+}
+
+.btn-filter {
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    background: #f1f3f6;
+    color: #555;
+    border: none;
+    transition: .25s ease;
+}
+
+.btn-filter:hover {
+    background: #e4e9f5;
+    color: #1e3794;
+}
+
+.btn-filter.active {
+    background: #1e3794;
+    color: #fff;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 14px;
+}
+
+.search-box input {
+    padding-left: 34px;
+    border-radius: 10px;
+}
+
+.product-spec {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0;
+}
+
+/* HANYA deskripsi yang boleh flex */
+.product-desc {
+    font-size: 14px;
+    color: #8a8f98;
+    line-height: 1.45;
+    margin-bottom: 10px;
+    flex-grow: 0;
+    /* penting */
+}
+
+.detail-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e3794;
+    text-decoration: none;
+    transition: .2s;
+    margin-top: auto;
+}
+
+.detail-link:hover {
+    color: #0d2a6d;
+    text-decoration: underline;
+}
+

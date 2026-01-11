@@ -14,6 +14,8 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css">
@@ -58,6 +60,97 @@
             easing: 'ease-out-cubic'
         });
     </script>
+    <script>
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.pagination a')) {
+                e.preventDefault();
+
+                const url = e.target.closest('a').getAttribute('href');
+
+                fetch(url, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById('product-wrapper').innerHTML = html;
+                        AOS.refresh(); // re-init animation
+                        window.history.pushState({}, '', url);
+                    });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const wrapper = document.getElementById('product-wrapper');
+            const searchInput = document.getElementById('product-search');
+
+            function loadProducts(url) {
+                fetch(url, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(res => res.text())
+                    .then(html => {
+                        wrapper.innerHTML = html;
+                        AOS.refresh();
+                        window.history.pushState({}, '', url);
+                    });
+            }
+
+            /* =====================
+               CATEGORY CLICK
+            ===================== */
+            document.addEventListener('click', function(e) {
+                const btn = e.target.closest('.btn-filter');
+                if (!btn) return;
+
+                e.preventDefault();
+
+                const category = btn.dataset.category || '';
+                const search = searchInput.value;
+
+                let url = `?category=${category}&search=${search}`;
+                loadProducts(url);
+
+                // active state
+                document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+
+            /* =====================
+               SEARCH INPUT
+            ===================== */
+            let searchTimer;
+            searchInput.addEventListener('keyup', function() {
+                clearTimeout(searchTimer);
+
+                searchTimer = setTimeout(() => {
+                    const categoryBtn = document.querySelector('.btn-filter.active');
+                    const category = categoryBtn ? categoryBtn.dataset.category : '';
+
+                    let url = `?category=${category}&search=${searchInput.value}`;
+                    loadProducts(url);
+                }, 400); // debounce
+            });
+
+            /* =====================
+               PAGINATION CLICK
+            ===================== */
+            document.addEventListener('click', function(e) {
+                const pageLink = e.target.closest('.pagination a');
+                if (!pageLink) return;
+
+                e.preventDefault();
+                loadProducts(pageLink.getAttribute('href'));
+            });
+
+        });
+    </script>
+
 
 </body>
 

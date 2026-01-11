@@ -17,4 +17,9 @@ return [
     'home_recent_project_delivering' => 'Menyampaikan Keunggulan di Berbagai Industri',
     'certificate' => 'Sertifikat',
     'copyright' => 'Hak Cipta Dilindungi Semua Hak',
+    'learn_more' => 'Pelajari Lebih Lanjut',
+    'detail_services' => 'Detail Layanan',
+    'all' => 'Semua',
+    'search_model' => 'Cari berdasarkan nama...',
+    'view_detail' => 'Lihat Detail',
 ];

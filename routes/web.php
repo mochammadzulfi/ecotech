@@ -13,10 +13,11 @@ Route::prefix('{lang}')
         Route::get('/', [PageController::class, 'home'])->name('home');
         
         Route::get('/services', [PageController::class, 'services'])->name('services');
-        Route::get('/services/{slug}', [PageController::class, 'serviceDetail'])
-            ->name('service.detail');
+        Route::get('/services/{slug}', [PageController::class, 'serviceDetail'])->name('service.detail');
 
         Route::get('/products', [PageController::class, 'products'])->name('products');
+        Route::get('/products/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
+
         Route::get('/portfolio', [PageController::class, 'portfolio'])->name('portfolio');
         Route::get('/contact', [PageController::class, 'contact'])->name('contact');
     });
