@@ -31,4 +31,6 @@ return [
     'contact_us' => 'Contact Us',
     'footer_services' => 'Services',
     'footer_products' => 'Products',
+    'wa_message' => 'Hello EcoTech, I would like to consult.'
+
 ];

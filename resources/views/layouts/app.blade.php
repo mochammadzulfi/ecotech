@@ -38,6 +38,12 @@
 
     @include('partials.footer')
 
+    <a href="https://wa.me/{{ $contact->whatsapp }}?text={{ urlencode(__('general.wa_message')) }}"
+        class="wa-float"
+        target="_blank">
+        <img src="{{ asset('assets/images/whatsapp.svg') }}">
+    </a>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -31,4 +31,6 @@ return [
     'contact_us' => 'Hubungi Kami',
     'footer_services' => 'Layanan',
     'footer_products' => 'Produk',
+    'wa_message' => 'Halo EcoTech, saya ingin konsultasi.'
+
 ];

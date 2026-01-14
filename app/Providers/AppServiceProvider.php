@@ -7,6 +7,7 @@ use Illuminate\Pagination\Paginator;
 use App\Models\FooterContent;
 use App\Models\Service;
 use App\Models\Product;
+use App\Models\Contact;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
             $footer = FooterContent::first();
 
             $view->with(compact('services', 'products', 'footer'));
+        });
+
+        view()->composer('*', function ($view) {
+            $contact = Contact::first();
+            $view->with('contact', $contact);
         });
     }
 }
