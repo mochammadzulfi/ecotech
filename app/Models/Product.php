@@ -13,18 +13,29 @@ class Product extends Model
         'name_en',
         'short_desc_id',
         'short_desc_en',
+        'specs',
         'image',
-        'capacity',
-        'pressure',
-        'is_featured'
+        'is_featured',
     ];
 
     protected $casts = [
         'specs' => 'array',
+        'is_featured' => 'boolean',
     ];
 
     public function category()
     {
         return $this->belongsTo(ProductCategory::class);
     }
+
+    public function getNameAttribute()
+    {
+        return $this->{'name_' . app()->getLocale()};
+    }
+
+    public function getShortDescAttribute()
+    {
+        return $this->{'short_desc_' . app()->getLocale()};
+    }
 }
+

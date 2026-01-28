@@ -38,7 +38,7 @@
 
     @include('partials.footer')
 
-    <a href="https://wa.me/{{ $contact->whatsapp }}?text={{ urlencode(__('general.wa_message')) }}"
+    <a href="https://wa.me/{{ $contact->phone }}?text={{ urlencode(__('general.wa_message')) }}"
         class="wa-float"
         target="_blank">
         <img src="{{ asset('assets/images/whatsapp.svg') }}">
