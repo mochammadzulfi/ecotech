@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Admin\DashboardController;
 
 Route::get('/', fn() => redirect('/id'));
 
@@ -51,7 +52,7 @@ Route::prefix('admin')->group(function () {
 
     // PROTECTED AREA
     Route::middleware('auth')->prefix('admin')->group(function () {
-        Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])
+        Route::get('/dashboard', [DashboardController::class, 'index'])
             ->name('admin.dashboard');
     });
 

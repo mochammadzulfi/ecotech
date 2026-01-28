@@ -330,7 +330,9 @@
 
                 <div class="d-flex align-items-center gap-3">
                     <span class="text-muted small">
+                        @auth
                         {{ auth()->user()->email }}
+                        @endauth
                     </span>
 
                     <form method="POST" action="{{ route('admin.logout') }}">
