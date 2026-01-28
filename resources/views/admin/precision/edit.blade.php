@@ -63,7 +63,6 @@
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
-                        <th>Icon</th>
                         <th>Title</th>
                         <th width="160">Action</th>
                     </tr>
@@ -72,12 +71,7 @@
                     @foreach ($section->items as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>
-                            @if ($item->icon)
-                            <img src="{{ asset('storage/'.$item->icon) }}" height="32">
-                            @endif
-                        </td>
-                        <td>{{ $item->title_id }} / {{ $item->title_en }}</td>
+                        <td>{{ $item->label_id }} / {{ $item->label_en }}</td>
                         <td>
                             <a href="{{ route('admin.precision.items.edit', $item) }}"
                                 class="btn btn-sm btn-outline-primary">Edit</a>

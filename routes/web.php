@@ -91,8 +91,11 @@ Route::prefix('admin')->group(function () {
         Route::post('/home-precision', [PrecisionSectionController::class, 'update'])
             ->name('admin.precision.update');
 
-        Route::resource('home-precision-items', PrecisionItemController::class)
-            ->except(['show'])
+        Route::resource(
+            'home-precision-items',
+            PrecisionItemController::class,
+            ['parameters' => ['home-precision-items' => 'precision_item']]
+        )->except(['show'])
             ->names('admin.precision.items');
     });
 

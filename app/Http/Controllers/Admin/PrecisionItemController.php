@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PrecisionItem;
+use App\Models\PrecisionSection;
 use Illuminate\Http\Request;
 
 class PrecisionItemController extends Controller
@@ -16,55 +17,45 @@ class PrecisionItemController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title_id' => 'required',
-            'title_en' => 'required',
-            'desc_id'  => 'required',
-            'desc_en'  => 'required',
-            'icon'     => 'nullable|image|max:1024',
+            'label_id' => 'required|string',
+            'label_en' => 'required|string',
         ]);
 
-        if ($request->hasFile('icon')) {
-            $data['icon'] = $request->file('icon')
-                ->store('precision', 'public');
-        }
+        // asumsi cuma ada 1 precision section
+        $data['precision_section_id'] = PrecisionSection::first()->id;
 
         PrecisionItem::create($data);
 
-        return redirect()->route('admin.precision.edit')
-            ->with('success', 'Item ditambahkan');
+        return redirect()
+            ->route('admin.precision.edit')
+            ->with('success', 'Precision item ditambahkan');
     }
 
-    public function edit(PrecisionItem $home_precision_item)
+    public function edit(PrecisionItem $precision_item)
     {
         return view('admin.precision.items.edit', [
-            'item' => $home_precision_item
+            'item' => $precision_item
         ]);
     }
 
-    public function update(Request $request, PrecisionItem $home_precision_item)
+    public function update(Request $request, PrecisionItem $precision_item)
     {
         $data = $request->validate([
-            'title_id' => 'required',
-            'title_en' => 'required',
-            'desc_id'  => 'required',
-            'desc_en'  => 'required',
-            'icon'     => 'nullable|image|max:1024',
+            'label_id' => 'required|string',
+            'label_en' => 'required|string',
         ]);
 
-        if ($request->hasFile('icon')) {
-            $data['icon'] = $request->file('icon')
-                ->store('precision', 'public');
-        }
+        $precision_item->update($data);
 
-        $home_precision_item->update($data);
-
-        return redirect()->route('admin.precision.edit')
-            ->with('success', 'Item diupdate');
+        return redirect()
+            ->route('admin.precision.edit')
+            ->with('success', 'Precision item diperbarui');
     }
 
-    public function destroy(PrecisionItem $home_precision_item)
+    public function destroy(PrecisionItem $precision_item)
     {
-        $home_precision_item->delete();
-        return back()->with('success', 'Item dihapus');
+        $precision_item->delete();
+
+        return back()->with('success', 'Precision item dihapus');
     }
 }
