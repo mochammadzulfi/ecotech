@@ -36,19 +36,21 @@
                         <td>{{ Str::limit($message->subject, 40) }}</td>
                         <td>{{ $message->created_at->format('d M Y, H:i') }}</td>
                         <td>
-                            <a href="{{ route('admin.contact-messages.show', $message) }}"
-                                class="btn btn-sm btn-outline-primary">Detail</a>
+                            <div class="d-flex gap-1">
+                                <a href="{{ route('admin.contact-messages.show', $message) }}"
+                                    class="btn btn-sm btn-outline-primary">Detail</a>
 
-                            <form method="POST"
-                                action="{{ route('admin.contact-messages.destroy', $message) }}"
-                                class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-outline-danger"
-                                    onclick="return confirm('Hapus pesan ini?')">
-                                    Delete
-                                </button>
-                            </form>
+                                <form method="POST"
+                                    action="{{ route('admin.contact-messages.destroy', $message) }}"
+                                    class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Hapus pesan ini?')">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @empty
