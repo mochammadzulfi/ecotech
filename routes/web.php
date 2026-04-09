@@ -44,7 +44,7 @@ use App\Http\Controllers\Admin\AuthController;
 Route::prefix('admin')->group(function () {
 
     // LOGIN
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('admin.login');
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 
     // LOGOUT

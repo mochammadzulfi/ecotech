@@ -15,7 +15,7 @@
                 Admin Login
             </h5>
 
-            <form method="POST" action="{{ route('admin.login') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 {{-- EMAIL --}}
