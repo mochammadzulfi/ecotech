@@ -14,6 +14,7 @@
     {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
 
     {{-- Optional polish (VERY LIGHT) --}}
     <style>
@@ -308,6 +309,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('admin.contact-messages.index') }}"
+                        class="nav-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
+                        <i class="bi bi-envelope me-2"></i> Contact Messages
+                    </a>
+                </li>
 
             </ul>
 

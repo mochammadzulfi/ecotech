@@ -17,6 +17,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProjectCategory;
 use App\Models\Contact;
+use App\Models\ContactMessage;
 
 class PageController extends Controller
 {
@@ -208,5 +209,26 @@ class PageController extends Controller
             'cta',
             'contact'
         ));
+    }
+
+    public function storeContact(Request $request)
+    {
+        $request->validate([
+            'name'    => 'required|string|max:255',
+            'phone'   => 'required|string|max:20',
+            'company' => 'nullable|string|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        ContactMessage::create($request->only([
+            'name',
+            'phone',
+            'company',
+            'subject',
+            'message'
+        ]));
+
+        return back()->with('success', __('general.message_sent'));
     }
 }

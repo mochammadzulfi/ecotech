@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ContactMessageController;
 
 Route::get('/', fn() => redirect('/id'));
 
@@ -37,6 +38,8 @@ Route::prefix('{lang}')
         Route::get('/portfolio/{slug}', [PageController::class, 'portfolioDetail'])->name('portfolio.detail');
 
         Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+
+        Route::post('/contact', [PageController::class, 'storeContact'])->name('contact.store');
     });
 
 use App\Http\Controllers\Admin\AuthController;
@@ -148,5 +151,11 @@ Route::prefix('admin')->group(function () {
         Route::resource('certificates', CertificateController::class)
             ->except(['show'])
             ->names('admin.certificates');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::resource('contact-messages', ContactMessageController::class)
+            ->only(['index', 'show', 'destroy'])
+            ->names('admin.contact-messages');
     });
 });
