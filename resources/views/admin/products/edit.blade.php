@@ -76,14 +76,24 @@
 
                     <div id="spec-wrapper">
                         @foreach ($product->specs ?? [] as $spec)
-                        <input class="form-control mb-2"
-                            name="specs[]"
-                            value="{{ $spec }}">
+                        <div class="row g-2 mb-2 spec-row">
+                            <div class="col-md-4">
+                                <input class="form-control" name="specs[label_id][]"
+                                    placeholder="Label (ID)" value="{{ $spec['label_id'] }}">
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" name="specs[label_en][]"
+                                    placeholder="Label (EN)" value="{{ $spec['label_en'] }}">
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" name="specs[value][]"
+                                    placeholder="Value" value="{{ $spec['value'] }}">
+                            </div>
+                        </div>
                         @endforeach
                     </div>
 
-                    <button type="button"
-                        class="btn btn-sm btn-outline-secondary"
+                    <button type="button" class="btn btn-sm btn-outline-secondary"
                         onclick="addSpec()">+ Add Spec</button>
                 </div>
 
@@ -112,11 +122,19 @@
 <script>
     function addSpec() {
         const wrapper = document.getElementById('spec-wrapper');
-        const input = document.createElement('input');
-        input.className = 'form-control mb-2';
-        input.name = 'specs[]';
-        input.placeholder = 'e.g. Capacity: 10–50 Ton/H';
-        wrapper.appendChild(input);
+        wrapper.insertAdjacentHTML('beforeend', `
+        <div class="row g-2 mb-2 spec-row">
+            <div class="col-md-4">
+                <input class="form-control" name="specs[label_id][]" placeholder="Label (ID)">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" name="specs[label_en][]" placeholder="Label (EN)">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" name="specs[value][]" placeholder="Value">
+            </div>
+        </div>
+    `);
     }
 </script>
 

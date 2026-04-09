@@ -36,7 +36,22 @@ class ProductController extends Controller
         ]);
 
         $data['slug'] = Str::slug($request->name_en);
-        $data['specs'] = array_values(array_filter($request->specs ?? []));
+        // Ubah bagian specs di store dan update
+        $label_ids  = $request->input('specs.label_id', []);
+        $label_ens  = $request->input('specs.label_en', []);
+        $values     = $request->input('specs.value', []);
+
+        $specs = [];
+        foreach ($label_ids as $i => $label_id) {
+            if (empty($label_id) && empty($values[$i])) continue;
+            $specs[] = [
+                'label_id' => $label_id,
+                'label_en' => $label_ens[$i] ?? '',
+                'value'    => $values[$i] ?? '',
+            ];
+        }
+
+        $data['specs'] = $specs;
         $data['is_featured'] = $request->boolean('is_featured');
 
         $data['image'] = $request->file('image')
@@ -68,7 +83,22 @@ class ProductController extends Controller
         ]);
 
         $data['slug'] = Str::slug($request->name_en);
-        $data['specs'] = array_values(array_filter($request->specs ?? []));
+        // Ubah bagian specs di store dan update
+        $label_ids  = $request->input('specs.label_id', []);
+        $label_ens  = $request->input('specs.label_en', []);
+        $values     = $request->input('specs.value', []);
+
+        $specs = [];
+        foreach ($label_ids as $i => $label_id) {
+            if (empty($label_id) && empty($values[$i])) continue;
+            $specs[] = [
+                'label_id' => $label_id,
+                'label_en' => $label_ens[$i] ?? '',
+                'value'    => $values[$i] ?? '',
+            ];
+        }
+
+        $data['specs'] = $specs;
         $data['is_featured'] = $request->boolean('is_featured');
 
         if ($request->hasFile('image')) {
@@ -88,4 +118,3 @@ class ProductController extends Controller
         return back()->with('success', 'Product dihapus');
     }
 }
-
