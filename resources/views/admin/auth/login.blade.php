@@ -4,8 +4,8 @@
 <div class="min-vh-100 d-flex">
 
     {{-- LEFT PANEL --}}
-    <div class="d-none d-lg-flex flex-column justify-content-between p-5 text-white"
-        style="width: 45%; background: linear-gradient(135deg, #0f2167 0%, #1e3794 60%, #1a6fc4 100%);">
+    <div class="d-none d-lg-flex flex-column justify-content-between p-5 text-white col-5"
+        style="background: linear-gradient(135deg, #0f2167 0%, #1e3794 60%, #1a6fc4 100%);">
 
         <div>
             <img src="{{ asset('assets/images/logo.png') }}" height="40">
@@ -26,10 +26,10 @@
     </div>
 
     {{-- RIGHT PANEL --}}
-    <div class="flex-fill d-flex align-items-center justify-content-center p-4"
+    <div class="col d-flex align-items-center justify-content-center p-4"
         style="background: #f8f9fc;">
 
-        <div style="width: 100%; max-width: 400px;">
+        <div style="width: 100%; max-width: 380px;">
 
             {{-- MOBILE LOGO --}}
             <div class="d-lg-none text-center mb-4">
@@ -90,7 +90,7 @@
                 </div>
 
                 {{-- REMEMBER --}}
-                <div class="mb-4 d-flex align-items-center justify-content-between">
+                <div class="mb-4">
                     <div class="form-check mb-0">
                         <input type="checkbox"
                             name="remember"
